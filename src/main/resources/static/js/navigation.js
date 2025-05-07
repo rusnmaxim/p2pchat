@@ -6,7 +6,7 @@ const sections = {
             <div class="activity-feed">
                 <h4>Recent Activity</h4>
                 <div id="activity-list" class="list-group">
-                    <!-- Activity items will be loaded here -->
+
                 </div>
             </div>
         `
@@ -29,7 +29,7 @@ const sections = {
                 </div>
                 <div class="chat-container">
                     <div class="chat-messages" id="chat-messages">
-                        <!-- Messages will be displayed here -->
+
                     </div>
                     <div class="members-list" id="members-list">
                         <div class="members-header">
@@ -39,8 +39,7 @@ const sections = {
                             </button>
                         </div>
                         <div class="members-content" id="members-content">
-                            <!-- Members will be displayed here -->
-                        </div>
+                                    </div>
                     </div>
                 </div>
                 <div class="message-input" id="message-input-area">
@@ -84,21 +83,18 @@ const sections = {
                     </div>
                 </div>
 
-                <!-- Pending Requests Section -->
-                <div class="card mb-4">
+                 <div class="card mb-4">
                     <div class="card-header bg-light d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Pending Friend Requests</h5>
                         <span class="badge bg-primary" id="pendingRequestsCount">0</span>
                     </div>
                     <div class="card-body p-0">
                         <div id="friendRequestList" class="list-group list-group-flush">
-                            <!-- Friend requests will be loaded here -->
-                        </div>
+                          </div>
                     </div>
                 </div>
 
-                <!-- Friends List Section -->
-                <div class="card">
+                 <div class="card">
                     <div class="card-header bg-light d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">My Friends</h5>
                         <span class="badge bg-primary" id="friendsCount">0</span>
@@ -108,8 +104,7 @@ const sections = {
                             <input type="text" class="form-control" id="friendSearch" placeholder="Search friends...">
                         </div>
                         <div class="friends-list" id="friendsList">
-                            <!-- Friends will be displayed here -->
-                        </div>
+                         </div>
                     </div>
                 </div>
             </div>

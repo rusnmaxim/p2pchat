@@ -1294,7 +1294,6 @@
         }
     </style>
 
-    <!-- Add this before the chat container -->
     <div id="new-messages-indicator" class="new-messages-indicator">
         <i class="fas fa-arrow-down"></i> New messages
     </div>
@@ -1302,7 +1301,6 @@
 </head>
 <body>
 <div class="app-container">
-    <!-- Left Navigation -->
     <div class="left-nav">
         <div class="nav-item active" data-section="activity">
             <i class="fas fa-home"></i>
@@ -1323,8 +1321,7 @@
         </div>
     </div>
 
-    <!-- Teams List -->
-    <div class="teams-list">
+   <div class="teams-list">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="mb-0">Chats</h5>
             <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newChatModal">
@@ -1332,20 +1329,17 @@
             </button>
         </div>
         <div class="chat-list">
-            <!-- Chats will be dynamically added here -->
-        </div>
+           </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
+      <div class="main-content">
         <div class="chat-header">
             <h4 id="current-chat-name">Select a chat</h4>
             <div class="online-members" id="online-members"></div>
         </div>
         <div class="chat-container">
         <div class="chat-messages" id="chat-messages">
-            <!-- Messages will be displayed here -->
-            </div>
+              </div>
             <div class="members-list" id="members-list">
                 <div class="members-header">
                     <h5>Members</h5>
@@ -1354,8 +1348,7 @@
                     </button>
                 </div>
                 <div class="members-content" id="members-content">
-                    <!-- Members will be displayed here -->
-                </div>
+                 </div>
             </div>
         </div>
         <div class="message-input" id="message-input-area">
@@ -1386,8 +1379,7 @@
 </div>
 
 
-<!-- Add these modals before the closing body tag -->
-<!-- New Chat Modal -->
+
 <div class="modal fade" id="newChatModal" tabindex="-1" aria-labelledby="newChatModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -1404,8 +1396,7 @@
                     <div class="mb-3">
                         <label for="chatParticipants" class="form-label">Participants</label>
                         <select class="form-select" id="chatParticipants" multiple required>
-                            <!-- Participants will be dynamically added here -->
-                        </select>
+                         </select>
                     </div>
                 </form>
             </div>
@@ -1417,7 +1408,7 @@
     </div>
 </div>
 
-<!-- Add Users Modal -->
+
 <div class="modal fade" id="addUsersModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -1429,8 +1420,7 @@
                 <div class="mb-3">
                     <label class="form-label">Select Users</label>
                     <div class="user-list" id="addUsersList">
-                        <!-- Users will be dynamically added here -->
-                    </div>
+                     </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -1441,7 +1431,7 @@
     </div>
 </div>
 
-<!-- Add New Channel Modal -->
+
 <div class="modal fade" id="newChannelModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -1477,7 +1467,7 @@
 </div>
 
 
-<!-- Add Friend Modal -->
+
 <div class="modal fade" id="addFriendModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -1496,14 +1486,12 @@
                     </div>
                 </div>
                 <div class="user-list" id="searchResults">
-                    <!-- Search results will be displayed here -->
-                </div>
+                     </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Friend Request Modal -->
 <div class="modal fade" id="friendRequestModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -1513,14 +1501,13 @@
             </div>
             <div class="modal-body">
                 <div class="friend-request-list" id="friendRequestList">
-                    <!-- Friend requests will be displayed here -->
-                </div>
+                               </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Add New Event Modal -->
+
 <div class="modal fade" id="newEventModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -1551,8 +1538,7 @@
                     <div class="mb-3">
                         <label for="eventParticipants" class="form-label">Participants</label>
                         <select class="form-select" id="eventParticipants" multiple>
-                            <!-- Participants will be dynamically added here -->
-                        </select>
+                                </select>
                     </div>
                 </form>
             </div>
@@ -1564,7 +1550,7 @@
     </div>
 </div>
 
-<!-- Add Profile Settings Modal -->
+
 <div class="modal fade" id="profileSettingsModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -1613,7 +1599,7 @@
     </div>
 </div>
 
-<!-- Delete Message Modal -->
+
 <div class="modal fade" id="deleteMessageModal" tabindex="-1" aria-labelledby="deleteMessageModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -1736,7 +1722,7 @@ function startPolling() {
             }
             const profile = await response.json();
             
-            // Store initial values
+
             initialProfileValues = {
                 fullName: profile.fullName || '',
                 email: profile.email || '',
@@ -2053,18 +2039,18 @@ function startPolling() {
         } catch (error) {
             console.error('Error checking online members:', error);
             
-            // Update connection status
+
             updateConnectionStatus(false);
             
-            // Handle retry logic
+
             if (retryCount < MAX_RETRY_ATTEMPTS) {
                 retryCount++;
                 console.log(`Retrying in ${RETRY_DELAY}ms (attempt ${retryCount}/${MAX_RETRY_ATTEMPTS})`);
                 
-                // Clear existing interval
+
                 stopOnlineMembersPolling();
                 
-                // Set up retry
+
                 window.retryTimeout = setTimeout(() => {
                     startOnlineMembersPolling(chatId);
                 }, RETRY_DELAY);
@@ -2087,10 +2073,10 @@ function startPolling() {
         const onlineMembersContainer = document.getElementById('online-members');
         if (!onlineMembersContainer) return;
 
-        // Clear existing content
+
         onlineMembersContainer.innerHTML = '';
 
-        // Add online members
+
         onlineMembers.forEach(member => {
             const memberElement = document.createElement('div');
             memberElement.className = 'online-member';
@@ -2134,7 +2120,7 @@ function startPolling() {
         messageInputArea.addEventListener(eventName, unhighlight, false);
     });
 
-    // Handle dropped files
+
     messageInputArea.addEventListener('drop', handleDrop, false);
 
     function preventDefaults(e) {
@@ -2194,7 +2180,7 @@ function startPolling() {
             fileItem.appendChild(removeButton);
             filePreview.appendChild(fileItem);
             
-            // If it's an image, show a preview
+
             if (file.type.startsWith('image/')) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
