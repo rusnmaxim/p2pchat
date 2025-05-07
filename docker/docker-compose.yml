@@ -1,0 +1,60 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: messengerdb
+    volumes:
+      - ./mongo-entrypoint:/docker-entrypoint-initdb.d
+  postgres:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloakdb
+      POSTGRES_USER: keycloakuser
+      POSTGRES_PASSWORD: keycloakpass
+    networks:
+      - keycloak-network
+  keycloak:
+    build: .
+    container_name: custom-keycloak
+    environment:
+      KC_DB: postgres
+      KC_DB_URL_HOST: postgres
+      KC_DB_USERNAME: keycloakuser
+      KC_DB_PASSWORD: keycloakpass
+      KC_DB_SCHEMA: public
+      KC_THEME: keycloak
+      KC_THEME_CACHE_TTL: 0
+      KC_HOSTNAME: mrusnac2.ngrok.app
+      KC_HTTP_ENABLED: true
+      KC_PROXY: edge
+      KC_HOSTNAME_STRICT: false
+      KC_HEALTH_ENABLED: "true"
+      KC_METRICS_ENABLED: "true"
+      PROXY_ADDRESS_FORWARDING: "true"
+      KC_HOSTNAME_STRICT_HTTPS: 'false'
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: adminpass
+      KC_DB_URL: 'jdbc:postgresql://postgres/keycloakdb'
+    ports:
+        - "8080:8080"
+    volumes:
+      - ./themes:/opt/keycloak/themes
+    networks:
+      - keycloak-network
+
+networks:
+  keycloak-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
